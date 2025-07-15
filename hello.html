@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SELAMAT ULANG TAHUN YAA CANTIKKKK</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Google -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: linear-gradient(to bottom, #ffe6f0, #fff);
+        font-family: "Segoe UI", sans-serif;
+        overflow-x: hidden;
+      }
+
+      .navbar {
+        background-color: #ff69b4 !important;
+      }
+
+      .navbar-brand {
+        font-family: "bubble", cursive;
+        font-size: 2rem;
+        animation: fadeInDown 2s ease;
+      }
+
+      h5.card-title {
+        font-family: "bubble", cursive;
+        font-size: 1.8rem;
+        color: #ff1493;
+      }
+
+      .card-text {
+        font-size: 1rem;
+        color: #555;
+      }
+
+      .fade-in {
+        animation: fadeIn 2s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Balloon Animation */
+      .balloon {
+        width: 40px;
+        height: 60px;
+        background-color: pink;
+        border-radius: 50% 50% 50% 50%;
+        position: absolute;
+        bottom: -100px;
+        animation: fly 10s infinite ease-in;
+      }
+
+      audio {
+        display: block;
+        margin: 30px auto;
+        border-radius: 12px;
+        background-color: #ffccdd;
+        box-shadow: 0 4px 12px rgba(255, 105, 180, 0.4);
+        width: 300px;
+        height: 40px;
+      }
+
+      textarea {
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(255, 105, 180, 0.2);
+      }
+
+      @keyframes fly {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-120vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document
+        .getElementById("waForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const message = document.getElementById("waMessage").value.trim();
+          if (message === "") {
+            alert("Pesan tidak boleh kosong yaa 😊");
+            return;
+          }
+
+          const phoneNumber = "6283120454587"; // Ganti dengan nomor tujuan kamu
+          const encodedMessage = encodeURIComponent(message);
+          const waLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+          window.open(waLink, "_blank");
+        });
+    });
+    // Tanggal target: 16 Juli 2025 pukul 00:00:00
+    const targetDate = new Date("July 16, 2025 00:00:00").getTime();
+
+    const countdown = setInterval(function () {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      // Perhitungan waktu
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Tampilkan hasil
+      document.getElementById(
+        "countdown"
+      ).innerHTML = `${days} hari ${hours} jam ${minutes} menit ${seconds} detik`;
+
+      // Jika countdown selesai
+      if (distance < 0) {
+        clearInterval(countdown);
+        document.getElementById("countdown").innerHTML =
+          "🎉 Selamat Ulang Tahun, Sayangg! 💖";
+      }
+    }, 1000);
+  </script>
+
+  <body>
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-dark navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
+    >
+      <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1 text-white">HBD Sayangg 💖</span>
+      </div>
+    </nav>
+    <div class="kotak" style="height: 80px"></div>
+
+    <!-- Balon -->
+    <div class="balloon" style="left: 10%; animation-delay: 0s"></div>
+    <div
+      class="balloon"
+      style="left: 30%; background-color: lightblue; animation-delay: 2s"
+    ></div>
+    <div
+      class="balloon"
+      style="left: 50%; background-color: lavender; animation-delay: 4s"
+    ></div>
+    <div
+      class="balloon"
+      style="left: 70%; background-color: lightpink; animation-delay: 1s"
+    ></div>
+
+    <!-- Carousel -->
+    <div
+      id="carouselExampleControls"
+      class="carousel slide my-4 fade-in"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="img/wp1.png" class="d-block w-100" alt="Slide 1" />
+        </div>
+        <div class="carousel-item">
+          <img src="img/wp2.png" class="d-block w-100" alt="Slide 2" />
+        </div>
+        <div class="carousel-item">
+          <img src="img/wp3.png" class="d-block w-100" alt="Slide 3" />
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleControls"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleControls"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <!-- Cards -->
+    <div class="container fade-in">
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Happy Birthday!</h5>
+              <p class="card-text">
+                Semoga hari-hari kamu dipenuhi tawaa, cinta, dan kebahagiaan
+                yang tak berujung. Kamu pantas mendapatkan duniaa, sayangg 💕
+              </p>
+              <a
+                style="
+                  left: 70%;
+                  background-color: lightpink;
+                  animation-delay: 1s;
+                "
+                href="https://gifft.me/id/o/3d/7f7v9dlukta0gtb4h9t41002"
+                class="btn btn-primary"
+                >Lihat Ucapan</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">PLEASE PLAY AUDIO!!</h5>
+              <audio controls loop>
+                <source
+                  src="mp3/Mangu - Fourtwnty ft. Charita Utami (slowed + reverb) Tiktok Ver. [-OSUiUM2mpc].mp3"
+                  type="audio/mpeg"
+                />
+                Your browser does not support the audio element.
+              </audio>
+              <a
+                style="
+                  left: 70%;
+                  background-color: lightpink;
+                  animation-delay: 1s;
+                "
+                href="#little-story"
+                class="btn btn-primary"
+                >Read Message</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="kotak" style="height: 70px" id="little-story"></div>
+    <!-- Cards -->
+    <div class="container-fluid fade-in">
+      <div class="row">
+        <div class="col-12">
+          <div class="card h-100">
+            <div class="card-body">
+              <img src="img/stiker.jpg" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="kotak" style="height: 70px" id="little-story"></div>
+    <!-- Cards -->
+    <div class="container-fluid fade-in">
+      <div class="row">
+        <div class="col-12">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-titles">Little Story!!</h5>
+
+              <p class="card-text">
+                aku mau sedikit cerita , gmna awal mula aku suka ke kamu, tapi
+                aku gabisa ngasi judul nyaaa, apa yaaaa ( mikir ).. awalnya si
+                emang aku iseng² kan nonton live kamuu waktu itu, yaa nggasii,
+                emang awalnya juga aku uda sering banget liat kamu, tpi kayanya
+                kamu ga ngeuh deh soalnya seringnya di jalann ketemu nya tuu,
+                yaa gmna yaa bingung aku jugaa, uda dehh intinya gtuu, trus aku
+                coba follow ig kamu kann, eh di follback ( yaa aku tau, karena
+                aku tmen smp kamu ), yaa dari situ si tadinya aku belum berani
+                buat dm atau apaa, nah pas kamu live ( tiktok ) lagii, aku
+                memberani kan diri untuk follow kamu dan chat kamu di tiktok
+                waktu ituu, dan singkat cerita chatan di tiktok kan yaa, dan
+                pada akhirnya mutualan wa jugaa, pokonya aku sama kmu tu awalnya
+                emang ga sengaja kann, dan baru dket kali ini juga, soalnya
+                waktu smp kita pernah sekelas ma kya asing banget kannn, paling
+                nagih kas doang karena kamu bendahara wkwkwk.. nah singkat
+                cerita kita chtan lahh, bertukar cerita hahaa seru banget
+                kannn.. tapi kita hts dlu lumayan lama jugaa , sempet juga kamu
+                nganter aku ke bandung hanya untuk interview kerja hahaha, yaa
+                meskipun pada akhirnya main jugaa, keliling dehh pokonyaa, dan
+                tepat pada tanggal 22 April 2025, kita jadian ( tepat di hari
+                ulang tahun adik kecil aku ), yaa emang sengaja biar gampang di
+                ingett.. kita juga sempet ldr an selama kurang lebih 3bulan,
+                paling ketemu kalo aku pulang, itu pun jarangg bangettt, kamu
+                kuat disana ngadepin nya, yang pacaran tpi dengan cara jarak
+                jauh, yang suka di tinggalin sma aku, karna aku kerja, tapi
+                disana kamu kuat ngadepin aku, dan berani bertahan sama aku..
+                makasi banyak yaaa cantikk🫶🏻🤍
+              </p>
+              <p class="card-text">
+                nah, tepat dihari ini Selasa 16 Juli 2025, cewe aku yang bernama
+                JENISYA NUR ARIFIN , ulang tahun ke 19 tahun, curang banget
+                kamuu ngeduluin aku dihh, aku aja tanggal 26, kamu ko tanggal
+                16... tapi gapapaaa, intinya selamat ulang tahun yaa sayangg,
+                semoga panjang umur, sehat selalu, semoga yang kamu mau, yang
+                kamu pngn tahun ini bisa kecapai semuanyaa, percaya sama takdir
+                ya sayangg, asal kamu mau ikhtiar dan berdoa juga, allah pasti
+                permudahkan ko, aku bantu ko sayangg, kamu jangan ngerasa
+                sendiri yaa, ada akuu.. kalo kamu ada yang dipikirin, ada yang
+                mau kamu certain, cerita aja ke aku yaa sayangg, jangan ngerasa
+                feeling lonely ingett kamu punya akuu🫶🏻🥹
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container mt-5 fade-in">
+      <h5 class="text-center mb-3">KIRIM PESAN SEKARANG</h5>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <form id="waForm">
+            <div class="mb-3">
+              <textarea
+                id="waMessage"
+                class="form-control"
+                rows="4"
+                placeholder="Tulis pesan manismu di sini..."
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-danger w-100">
+              Kirim Lewat WhatsApp 💌
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="kotak" style="height: 70px" id="little-story"></div>
+
+    <!-- Bootstrap Bundle JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
