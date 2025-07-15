@@ -26,27 +26,32 @@
         font-family: "Segoe UI", sans-serif;
         overflow-x: hidden;
       }
+
       .navbar {
         background-color: #ff69b4 !important;
       }
+
       .navbar-brand {
-        font-family: "Great Vibes", cursive;
-        font-size: 2.5rem;
+        font-family: "bubble", cursive;
+        font-size: 2rem;
         animation: fadeInDown 2s ease;
       }
-      h5.card-title,
-      h5.card-titles {
-        font-family: "Great Vibes", cursive;
-        font-size: 2rem;
+
+      h5.card-title {
+        font-family: "bubble", cursive;
+        font-size: 1.8rem;
         color: #ff1493;
       }
+
       .card-text {
         font-size: 1rem;
         color: #555;
       }
+
       .fade-in {
         animation: fadeIn 2s ease-in-out;
       }
+
       @keyframes fadeIn {
         from {
           opacity: 0;
@@ -57,6 +62,7 @@
           transform: translateY(0);
         }
       }
+
       @keyframes fadeInDown {
         from {
           opacity: 0;
@@ -67,6 +73,8 @@
           transform: translateY(0);
         }
       }
+
+      /* Balloon Animation */
       .balloon {
         width: 40px;
         height: 60px;
@@ -76,6 +84,22 @@
         bottom: -100px;
         animation: fly 10s infinite ease-in;
       }
+
+      audio {
+        display: block;
+        margin: 30px auto;
+        border-radius: 12px;
+        background-color: #ffccdd;
+        box-shadow: 0 4px 12px rgba(255, 105, 180, 0.4);
+        width: 300px;
+        height: 40px;
+      }
+
+      textarea {
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(255, 105, 180, 0.2);
+      }
+
       @keyframes fly {
         0% {
           transform: translateY(0) rotate(0deg);
@@ -86,66 +110,67 @@
           opacity: 0;
         }
       }
-      audio {
-        display: block;
-        margin: 30px auto;
-        border-radius: 12px;
-        background-color: #ffccdd;
-        box-shadow: 0 4px 12px rgba(255, 105, 180, 0.4);
-        width: 300px;
-        height: 40px;
-      }
-      textarea {
-        border-radius: 12px;
-        box-shadow: 0 2px 10px rgba(255, 105, 180, 0.2);
-      }
-      /* Romantic Animated Heart */
-      .heart {
-        position: fixed;
-        width: 20px;
-        height: 20px;
-        background-color: red;
-        transform: rotate(-45deg);
-        animation: heartFloat 6s infinite ease-in-out;
-      }
-      .heart::before,
-      .heart::after {
-        content: "";
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        background-color: red;
-        border-radius: 50%;
-      }
-      .heart::before {
-        top: -10px;
-        left: 0;
-      }
-      .heart::after {
-        left: 10px;
-        top: 0;
-      }
-      @keyframes heartFloat {
-        0% {
-          transform: translateY(0) rotate(-45deg);
-          opacity: 1;
-        }
-        100% {
-          transform: translateY(-200px) rotate(-45deg);
-          opacity: 0;
-        }
-      }
     </style>
   </head>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document
+        .getElementById("waForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const message = document.getElementById("waMessage").value.trim();
+          if (message === "") {
+            alert("Pesan tidak boleh kosong yaa 😊");
+            return;
+          }
+
+          const phoneNumber = "6283120454587"; // Ganti dengan nomor tujuan kamu
+          const encodedMessage = encodeURIComponent(message);
+          const waLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+          window.open(waLink, "_blank");
+        });
+    });
+    // Tanggal target: 16 Juli 2025 pukul 00:00:00
+    const targetDate = new Date("July 16, 2025 00:00:00").getTime();
+
+    const countdown = setInterval(function () {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      // Perhitungan waktu
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Tampilkan hasil
+      document.getElementById(
+        "countdown"
+      ).innerHTML = `${days} hari ${hours} jam ${minutes} menit ${seconds} detik`;
+
+      // Jika countdown selesai
+      if (distance < 0) {
+        clearInterval(countdown);
+        document.getElementById("countdown").innerHTML =
+          "🎉 Selamat Ulang Tahun, Sayangg! 💖";
+      }
+    }, 1000);
+  </script>
+
   <body>
-    <nav class="navbar navbar-dark fixed-top">
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-dark navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
+    >
       <div class="container-fluid">
-        <span class="navbar-brand">HBD Sayangg 💖</span>
+        <span class="navbar-brand mb-0 h1 text-white">HBD Sayangg 💖</span>
       </div>
     </nav>
-    <div style="height: 80px"></div>
+    <div class="kotak" style="height: 80px"></div>
 
-    <!-- Balloons -->
+    <!-- Balon -->
     <div class="balloon" style="left: 10%; animation-delay: 0s"></div>
     <div
       class="balloon"
@@ -159,18 +184,6 @@
       class="balloon"
       style="left: 70%; background-color: lightpink; animation-delay: 1s"
     ></div>
-
-    <!-- Floating Hearts -->
-    <script>
-      function spawnHearts() {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.style.left = Math.random() * 100 + "vw";
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 6000);
-      }
-      setInterval(spawnHearts, 500);
-    </script>
 
     <!-- Carousel -->
     <div
@@ -209,92 +222,56 @@
       </button>
     </div>
 
-    <!-- Romantic Audio Message -->
+    <!-- Cards -->
     <div class="container fade-in">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title text-center">Play Audio 🎶</h5>
-          <audio controls loop>
-            <source
-              src="mp3/Nadhif Basalamah - bergema sampai selamanya (Official Lyric Video) [gvunApwKIiY].mp3"
-              type="audio/mpeg"
-            />
-          </audio>
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">Happy Birthday!</h5>
+              <p class="card-text">
+                Semoga hari-hari kamu dipenuhi tawaa, cinta, dan kebahagiaan
+                yang tak berujung. Kamu pantas mendapatkan duniaa, sayangg 💕
+              </p>
+              <a
+                style="
+                  left: 70%;
+                  background-color: lightpink;
+                  animation-delay: 1s;
+                "
+                href="https://gifft.me/id/o/3d/7f7v9dlukta0gtb4h9t41002"
+                class="btn btn-primary"
+                >Lihat Ucapan</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">PLEASE PLAY AUDIO!!</h5>
+              <audio controls loop>
+                <source
+                  src="mp3/Mangu - Fourtwnty ft. Charita Utami (slowed + reverb) Tiktok Ver. [-OSUiUM2mpc].mp3"
+                  type="audio/mpeg"
+                />
+                Your browser does not support the audio element.
+              </audio>
+              <a
+                style="
+                  left: 70%;
+                  background-color: lightpink;
+                  animation-delay: 1s;
+                "
+                href="#little-story"
+                class="btn btn-primary"
+                >Read Message</a
+              >
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-    <!-- WA Form -->
-    <div class="container mt-5 fade-in">
-      <h5 class="text-center mb-3">KIRIM PESAN SPESIAL 💌</h5>
-      <div class="row justify-content-center">
-        <div class="col-md-6">
-          <form id="waForm">
-            <textarea
-              id="waMessage"
-              class="form-control mb-3"
-              rows="4"
-              placeholder="Tulis pesan manismu di sini..."
-              required
-            ></textarea>
-            <button type="submit" class="btn btn-danger w-100">
-              Kirim Lewat WhatsApp
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- Countdown Script -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        document
-          .getElementById("waForm")
-          .addEventListener("submit", function (e) {
-            e.preventDefault();
-            const message = document.getElementById("waMessage").value.trim();
-            if (message === "") {
-              alert("Pesan tidak boleh kosong yaa 😊");
-              return;
-            }
-            const phoneNumber = "6283120454587";
-            const encodedMessage = encodeURIComponent(message);
-            window.open(
-              `https://wa.me/${phoneNumber}?text=${encodedMessage}`,
-              "_blank"
-            );
-          });
-
-        const targetDate = new Date("July 16, 2025 00:00:00").getTime();
-        const countdown = setInterval(function () {
-          const now = new Date().getTime();
-          const distance = targetDate - now;
-          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-          const hours = Math.floor(
-            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-          );
-          const minutes = Math.floor(
-            (distance % (1000 * 60 * 60)) / (1000 * 60)
-          );
-          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-          document.getElementById(
-            "countdown"
-          ).innerHTML = `${days} hari ${hours} jam ${minutes} menit ${seconds} detik`;
-          if (distance < 0) {
-            clearInterval(countdown);
-            document.getElementById("countdown").innerHTML =
-              "🎉 Selamat Ulang Tahun, Sayangg! 💖";
-          }
-        }, 1000);
-      });
-    </script>
-
-    <!-- Countdown Section -->
-    <div class="container text-center mt-5 fade-in">
-      <h5 class="mb-2">Hitung Mundur ke Hari Spesial 💝</h5>
-      <p id="countdown" class="fw-bold fs-4 text-danger"></p>
-    </div>
-
     <div class="kotak" style="height: 70px" id="little-story"></div>
     <!-- Cards -->
     <div class="container-fluid fade-in">
@@ -302,76 +279,95 @@
         <div class="col-12">
           <div class="card h-100">
             <div class="card-body">
-              <h5 class="card-titles">Galery</h5>
-              <div class="card" style="width: 18rem">
-                <img src="img/card1.jpeg" class="card-img-top" alt="..." />
-              </div>
-              <div class="card" style="width: 18rem">
-                <img src="img/card2.jpeg" class="card-img-top" alt="..." />
-              </div>
-              <div class="card" style="width: 18rem">
-                <img src="img/card5.jpeg" class="card-img-top" alt="..." />
-                <div class="card-body">
-                  <p class="card-text">
-                    Bunga lucuu bangettt, pasti kamu sukaa
-                  </p>
-                </div>
-              </div>
-              <div class="card" style="width: 18rem">
-                <img src="img/card4.jpeg" class="card-img-top" alt="..." />
-                <div class="card-body">
-                  <p class="card-text">
-                    ini depan UNSUB waktu kamu telat kelass tuu, gara gara
-                    photoshoot wkwkk
-                  </p>
-                </div>
-              </div>
-              <div class="card" style="width: 18rem">
-                <img src="img/card3.jpeg" class="card-img-top" alt="..." />
-                <div class="card-body">
-                  <p class="card-text">
-                    ini hasilnyaaa, lucu bangett upin ipinn
-                  </p>
-                </div>
-              </div>
-
-              <div class="card" style="width: 18rem">
-                <img src="img/card 6.jpeg" class="card-img-top" alt="..." />
-                <div class="card-body">
-                  <p class="card-text">
-                    ini buatan kamuu, kita jarang poto poto kalo ketemuu
-                  </p>
-                </div>
-              </div>
-              <div class="card" style="width: 18rem">
-                <img src="img/card7.jpeg" class="card-img-top" alt="..." />
-                <div class="card-body">
-                  <p class="card-text">
-                    ini di warung bi eem hahaha, dilan dan milea versi lite
-                  </p>
-                </div>
-              </div>
-              <div class="card" style="width: 18rem">
-                <img src="img/card8.jpeg" class="card-img-top" alt="..." />
-                <div class="card-body">
-                  <p class="card-text">ini kitaaaa lucu bangettt</p>
-                </div>
-              </div>
-              <div class="card" style="width: 18rem">
-                <img src="img/card9.jpeg" class="card-img-top" alt="..." />
-                <div class="card-body">
-                  <p class="card-text">
-                    ini pap ke mama karena ditanyain , uda sore bangett
-                  </p>
-                </div>
-              </div>
+              <img src="img/stiker.jpg" alt="" />
             </div>
           </div>
         </div>
       </div>
     </div>
-    <button type="submit" class="btn btn-danger w-100">from renaaaall</button>
+    <div class="kotak" style="height: 70px" id="little-story"></div>
+    <!-- Cards -->
+    <div class="container-fluid fade-in">
+      <div class="row">
+        <div class="col-12">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-titles">Little Story!!</h5>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+              <p class="card-text">
+                aku mau sedikit cerita , gmna awal mula aku suka ke kamu, tapi
+                aku gabisa ngasi judul nyaaa, apa yaaaa ( mikir ).. awalnya si
+                emang aku iseng² kan nonton live kamuu waktu itu, yaa nggasii,
+                emang awalnya juga aku uda sering banget liat kamu, tpi kayanya
+                kamu ga ngeuh deh soalnya seringnya di jalann ketemu nya tuu,
+                yaa gmna yaa bingung aku jugaa, uda dehh intinya gtuu, trus aku
+                coba follow ig kamu kann, eh di follback ( yaa aku tau, karena
+                aku tmen smp kamu ), yaa dari situ si tadinya aku belum berani
+                buat dm atau apaa, nah pas kamu live ( tiktok ) lagii, aku
+                memberani kan diri untuk follow kamu dan chat kamu di tiktok
+                waktu ituu, dan singkat cerita chatan di tiktok kan yaa, dan
+                pada akhirnya mutualan wa jugaa, pokonya aku sama kmu tu awalnya
+                emang ga sengaja kann, dan baru dket kali ini juga, soalnya
+                waktu smp kita pernah sekelas ma kya asing banget kannn, paling
+                nagih kas doang karena kamu bendahara wkwkwk.. nah singkat
+                cerita kita chtan lahh, bertukar cerita hahaa seru banget
+                kannn.. tapi kita hts dlu lumayan lama jugaa , sempet juga kamu
+                nganter aku ke bandung hanya untuk interview kerja hahaha, yaa
+                meskipun pada akhirnya main jugaa, keliling dehh pokonyaa, dan
+                tepat pada tanggal 22 April 2025, kita jadian ( tepat di hari
+                ulang tahun adik kecil aku ), yaa emang sengaja biar gampang di
+                ingett.. kita juga sempet ldr an selama kurang lebih 3bulan,
+                paling ketemu kalo aku pulang, itu pun jarangg bangettt, kamu
+                kuat disana ngadepin nya, yang pacaran tpi dengan cara jarak
+                jauh, yang suka di tinggalin sma aku, karna aku kerja, tapi
+                disana kamu kuat ngadepin aku, dan berani bertahan sama aku..
+                makasi banyak yaaa cantikk🫶🏻🤍
+              </p>
+              <p class="card-text">
+                nah, tepat dihari ini Selasa 16 Juli 2025, cewe aku yang bernama
+                JENISYA NUR ARIFIN , ulang tahun ke 19 tahun, curang banget
+                kamuu ngeduluin aku dihh, aku aja tanggal 26, kamu ko tanggal
+                16... tapi gapapaaa, intinya selamat ulang tahun yaa sayangg,
+                semoga panjang umur, sehat selalu, semoga yang kamu mau, yang
+                kamu pngn tahun ini bisa kecapai semuanyaa, percaya sama takdir
+                ya sayangg, asal kamu mau ikhtiar dan berdoa juga, allah pasti
+                permudahkan ko, aku bantu ko sayangg, kamu jangan ngerasa
+                sendiri yaa, ada akuu.. kalo kamu ada yang dipikirin, ada yang
+                mau kamu certain, cerita aja ke aku yaa sayangg, jangan ngerasa
+                feeling lonely ingett kamu punya akuu🫶🏻🥹
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container mt-5 fade-in">
+      <h5 class="text-center mb-3">KIRIM PESAN SEKARANG</h5>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <form id="waForm">
+            <div class="mb-3">
+              <textarea
+                id="waMessage"
+                class="form-control"
+                rows="4"
+                placeholder="Tulis pesan manismu di sini..."
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-danger w-100">
+              Kirim Lewat WhatsApp 💌
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="kotak" style="height: 70px" id="little-story"></div>
+
+    <!-- Bootstrap Bundle JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
